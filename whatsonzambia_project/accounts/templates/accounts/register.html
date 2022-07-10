@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Colorlib Templates">
+        <meta name="author" content="Colorlib">
+        <meta name="keywords" content="Colorlib Templates">
+
+        <!-- Title Page-->
+        {% if title %}
+        <title>Whats on Zambia - {{ title }}</title>
+        {% else %}    
+        <title>Whats on Zambia</title>
+        {% endif %}
+
+        <!-- Bootstrap CSS-->
+        <link href="{% static 'whatsonzambia/forms/css/style.css' %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+    </head>
+    <body>
+        <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="wrap">
+                        <div class="login-wrap p-4 p-md-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class="mb-4">Register</h3>
+                                </div>
+                            </div>
+                            <form method="POST" class="signin-form">
+                                {% csrf_token %}
+                                <div class="form-group mt-3">
+                                    <input type="email" name="email" class="form-control" {% if form.is_bound %}value="{{ form.email.value }}{% endif %}" required>
+                                    <label class="form-control-placeholder" for="email">Email Address</label>
+                                    {% for err in form.email.errors %}
+                                    <small class="text-danger ml-2">{{ err }}</small>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" name="fullname" class="form-control" {% if form.is_bound %}value="{{ form.fullname.value }}{% endif %}" required>
+                                    <label class="form-control-placeholder" for="fullname">Fullname</label>
+                                    {% for err in form.fullname.errors %}
+                                    <small class="text-danger ml-2">{{ err }}</small>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" name="contact" class="form-control" {% if form.is_bound %}value="{{ form.contact.value }}{% endif %}" required>
+                                    <label class="form-control-placeholder" for="contact">Contact</label>
+                                    {% for err in form.contact.errors %}
+                                    <small class="text-danger ml-2">{{ err }}</small>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group">
+                                    <input id="password-field" type="password" name="password1" class="form-control" {% if form.is_bound %}value="{{ form.password1.value }}{% endif %}" required>
+                                    {% for err in form.password1.errors %}
+                                    <small class="text-danger ml-2">{{ err }}</small>
+                                    {% endfor %}
+                                    <label class="form-control-placeholder" for="password">Password</label>
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input id="password-field" type="password" name="password2" class="form-control" {% if form.is_bound %}value="{{ form.password2.value }}{% endif %}" required>
+                                    {% for err in form.password2.errors %}
+                                    <small class="text-danger ml-2">{{ err }}</small>
+                                    {% endfor %}
+                                    <label class="form-control-placeholder" for="password">Confirm Password</label>
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary">Register</button>
+                                </div>
+                            </form>
+                            <div class="boder-top pt-3 text-center">
+                                <h6 class="text-muted">
+                                    <a class="form-control btn btn-primary" href="{% url 'login' %}"> Sign in</a>
+                                    <p><a class="form-control btn btn-primary mt-3" href="{% url 'whatsonzambia-home' %}">Home</a></p>
+                                </h6>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <script src="{% static 'whatsonzambia/forms/js/popper.js' %}"></script>
+        <script src="{% static 'whatsonzambia/forms/js/main_reg.js' %}"></script>
+        <script src="{% static 'whatsonzambia/forms/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'whatsonzambia/forms/js/main.js' %}"></script>
+        <script src="{% static 'whatsonzambia/forms/js/jquery.min.js' %}"></script>
+    </body>
+</html>
